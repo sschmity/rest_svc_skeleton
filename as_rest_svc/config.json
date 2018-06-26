@@ -1,0 +1,10 @@
+{
+  "http.server.config": {
+    "name": "localhost",
+    "port": ":13301"
+  },
+  "log.config": {
+    "file.path": "",
+    "file.name": "as_rest_svc.log"
+  }
+}
