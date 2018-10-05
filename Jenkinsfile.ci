@@ -1,15 +1,30 @@
 pipeline {
-    agent any
+    //agent any
+	agent none
+	environment { 
+        CC = 'clang'
+		AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-access-key')
+		
+    }
 
     stages {
         stage('Build') {
+		    agent any
+			environment { 
+				CCC = 'clang1'
+			}
             steps {
+				checkout scm
                 echo 'Building..Running ${env.BUILD_ID} on ${env.JENKINS_URL}'
             }
         }
         stage('Test') {
+			agent { 
+                label 'docker'
+            }
             steps {
                 echo 'Testing..'
+				sh 'printenv'
             }
         }
         stage('Deploy') {
